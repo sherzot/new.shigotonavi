@@ -1,0 +1,297 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Exports\CustomExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\User;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use GuzzleHttp\Client;
+//use App\Exports\CustomExport;
+//use Maatwebsite\Excel\Facades\Excel;
+
+class ExportController extends Controller
+{
+        public function export()
+        {
+                $person = Auth::user();
+                if (!$person) {
+                        return redirect()->route('login')->withErrors('ログインしてください。');
+                }
+
+                $staffCode = Auth::user()->staff_code; //
+                $users = DB::table('master_person')
+                        ->select('staff_code', 'name', 'mail_address')
+                        ->where('staff_code', $staffCode)
+                        //->limit(1)
+                        ->get();
+                if (!$users) {
+                        //error処理
+                        return back()->with('error', '登録が完了していません。登録が完了しているのを確認して、もう一度お試しください。');
+                }
+
+                // エクスポート実行（テンプレートに書き込み）
+                $export = new CustomExport($users);
+                $export->registerEVents();
+                //dd($export);
+                //dd(storage_path('app/exports/custom_export.xlsx'));
+                //app/private/exports/custom_export.xls
+                //Excel::store($export, 'private/exports/custom_export.xlsx');
+                //Excel::store($export, storage_path('app/exports/custom_export.xlsx'));
+                $filePath = 'exports/resume-' . $staffCode . '.xlsx';
+
+                // Faylni yaratishdan oldin log yozish
+                Log::info("Save file: " . storage_path('app/' . $filePath));
+
+                Excel::store($export, $filePath, 'local');
+
+                // Fayl mavjudligini logga yozish
+                if (!\Storage::disk('local')->exists($filePath)) {
+                        Log::error("File not created: " . $filePath);
+                        return back()->with('error', 'ファイルが生成されていません。もう一度お試しください。');
+                }
+
+                Log::info("File created successfully.: " . storage_path('app/' . $filePath));
+
+                return response()->download(storage_path('app/' . $filePath));
+
+                //return response()->download(storage_path('app/exports/custom_export.xlsx'));
+                //return Excel::download(new CustomExport(), 'custom_export.xlsx');Excel::store($export, 'exports/custom_export.xlsx');
+        }
+
+        public function pdf()
+        {
+                $person = Auth::user();
+                if (!$person) {
+                        return redirect()->route('login')->withErrors('ログインしてください。');
+                }
+
+                $staffCode = Auth::user()->staff_code;
+                $users = DB::table('master_person')
+                        ->select('staff_code',        'name',        'mail_address')
+                        ->where('staff_code',        $staffCode)
+                        //->limit(1)
+                        ->get();
+                if (!$users) {
+                        //error処理
+                        return back()->with('error', '登録が完了していません。登録が完了しているのを確認して、もう一度お試しください。');
+                }
+
+                $file_name = 'resume-' . $staffCode; //20250213
+                //$file_name = 'custom_export';
+                //$file_name = 'resume_' . date('YmdHis');
+                //$export_service = new ExportService();
+                //$export_service->makePdf($file_name);
+                $export = new CustomExport();
+                //dd($export);
+                $export->makePdf($file_name);
+                //dd($file_name); 
+                $file_path = storage_path('app/exports/pdf/' . $file_name . '.pdf');
+                if (!file_exists($file_path)) {
+                        //dd($file_path . 'は存在しません。');
+                }
+                //dd($file_path);
+                $headers = ['Content-Type' => 'application/pdf'];
+                return response()->download($file_path, $file_name . '.pdf', $headers);
+        }
+
+        public function careersheet()
+        {
+                $staffCode = Auth::user()->staff_code; //
+
+                $users = DB::table('master_person')
+                        ->select('staff_code', 'name', 'mail_address')
+                        ->where('staff_code', $staffCode)
+                        //->limit(10)
+                        ->get();
+                if (!$users) {
+                        //error処理
+                        return        back()->with('error',        '登録が完了していません。登録が完了しているのを確認して、もう一度お試しください
+。');
+                }
+
+
+                // エクスポート実行（テンプレートに書き込み）
+                $export = new CustomExport($users);
+                //export classの makeCareerSheet関数を呼び出す
+                $file_name = 'careersheet-' . $staffCode . '.xlsx';
+                $export->makeCareerSheet($file_name);
+                //Excel::store($export, 'exports/resume_test.xlsx');
+                //dd($export);
+                //dd(storage_path('app/exports/custom_export.xlsx'));
+                Excel::store($export, 'exports/careersheet-' . $staffCode . '.xlsx');
+
+                // ダウンロード用のレスポンスを返す
+                return response()->download(storage_path('app/exports/careersheet-' . $staffCode . '.xlsx')); //20250218
+        }
+
+        public function careerpdf()
+        {
+                $staffCode = Auth::user()->staff_code; //
+                $users        =        DB::table('master_person')
+                        ->select('staff_code',        'name',        'mail_address')
+                        ->where('staff_code',        $staffCode)
+                        //->limit(1)
+                        ->get();
+                if (!$users) {
+                        //error処理
+                        return        back()->with('error',        '登録が完了していません。登録が完了しているのを確認して、もう一度お試しください
+。');
+                }
+
+                $file_name = 'careersheet-' . $staffCode; //20250219
+                $export = new CustomExport();
+                //dd($export);
+                $export->makeCareerPdf($file_name);
+                //dd($file_name);
+                $file_path = storage_path('app/exports/pdf/' . $file_name . '.pdf');
+                //dd($file_path);
+                $headers = ['Content-Type' => 'application/pdf'];
+                return response()->download($file_path, $file_name . '.pdf', $headers);
+        }
+
+        public function generateResumeFiles($staffCode)
+        {
+                $users = DB::table('master_person')
+                        ->select('staff_code', 'name', 'mail_address')
+                        ->where('staff_code', $staffCode)
+                        ->get();
+
+                if ($users->isEmpty()) {
+                        Log::error("【履歴書エラー】ユーザーデータが見つかりません: StaffCode={$staffCode}");
+                        return false;
+                }
+
+                // Fayl yo‘llari
+                $resumeFilePath = "exports/resume-{$staffCode}.xlsx";
+                $careerSheetFilePath = "exports/careersheet-{$staffCode}.xlsx";
+
+                try {
+                        // 履歴書 (Resume) yaratish
+                        $resumeExport = new CustomExport();
+                        $resumeExport->registerEVents();
+                        Excel::store($resumeExport, $resumeFilePath, 'local');
+                        Log::info("【履歴書】Excel 作成: {$resumeFilePath}");
+                } catch (\Exception $e) {
+                        Log::error("【履歴書エラー】Excel の作成中にエラーが発生しました: " . $e->getMessage());
+                        return false;
+                }
+
+                try {
+                        // 職務経歴書 (Career Sheet) yaratish
+                        $careerSheetExport = new CustomExport();
+                        $careerSheetExport->makeCareerSheet("careersheet-{$staffCode}");
+                        Excel::store($careerSheetExport, $careerSheetFilePath, 'local');
+                        Log::info("【職務経歴書】Excel 作成: {$careerSheetFilePath}");
+                } catch (\Exception $e) {
+                        Log::error("【職務経歴書エラー】Excel の作成中にエラーが発生しました: " . $e->getMessage());
+                        return false;
+                }
+
+                return [
+                        'resume' => $resumeFilePath,
+                        'careersheet' => $careerSheetFilePath
+                ];
+        }
+        public function generateResumePDF($staffCode)
+        {
+                // ✅ 1️⃣ Foydalanuvchi ma’lumotlarini olish
+                $person = DB::table('master_person')->where('staff_code', $staffCode)->first();
+
+                if (!$person) {
+                        Log::error("【履歴書エラー】ユーザーデータが見つかりません: StaffCode={$staffCode}");
+                        return false;
+                }
+
+                // ✅ 2️⃣ Ta’lim va ish tarixi ma’lumotlarini olish
+                $educations = DB::table('person_educate_history')->where('staff_code', $staffCode)->get();
+                $careers = DB::table('person_career_history')->where('staff_code', $staffCode)->get();
+
+                // 📌 Fayl yo‘llari
+                $resumeFilePath = "public/exports/resume-{$staffCode}.pdf";
+                $careerSheetFilePath = "public/exports/careersheet-{$staffCode}.pdf";
+
+                try {
+                        // ✅ 3️⃣ Resume PDF yaratish
+                        $resumePdf = Pdf::loadView('pdf.resume', compact('person', 'educations', 'careers'))->setPaper('A4', 'portrait');
+                        \Storage::put($resumeFilePath, $resumePdf->output());
+                        Log::info("【履歴書】PDF 作成: {$resumeFilePath}");
+
+                        // ✅ 4️⃣ Career Sheet PDF yaratish
+                        $careerPdf = Pdf::loadView('pdf.career', compact('person', 'educations', 'careers'))->setPaper('A4', 'portrait');
+                        \Storage::put($careerSheetFilePath, $careerPdf->output());
+                        Log::info("【職務経歴書】PDF 作成: {$careerSheetFilePath}");
+                } catch (\Exception $e) {
+                        Log::error("【履歴書エラー】PDF の作成中にエラーが発生しました: " . $e->getMessage());
+                        return false;
+                }
+
+                return [
+                        'resume' => str_replace("public/", "", $resumeFilePath),
+                        'careersheet' => str_replace("public/", "", $careerSheetFilePath)
+                ];
+        }
+
+        //20250329
+        public function sendPdfToApi()
+        {
+
+                $staffCode = Auth::user()->staff_code;
+                $users = DB::table('master_person')
+                        ->select('staff_code',  'name', 'mail_address')
+                        ->where('staff_code', $staffCode)
+                        ->get();
+                if (!$users) {
+                        //error処理
+                        return back()->with('error', '登録が完了していません。登録が完了しているのを確認して、もう一度お試しくだ
+さい。');
+                }
+
+                $file_name = 'resume-' . $staffCode; //20250213
+                $export = new CustomExport();
+                //dd($export);
+                $export->makePdf($file_name);
+                //dd($file_name);
+                $file_path = storage_path('app/exports/pdf/' . $file_name . '.pdf');
+                if (!file_exists($file_path)) {
+                        //dd($file_path . 'は存在しません。');
+                }
+                //dd($file_path);
+                try {
+                        // APIに送信
+                        $client = new Client();
+                        //Test api-s //Unyou https://api.printing.ne.jp .....
+                        $response = $client->request('POST', 'https://api-S.printing.ne.jp/usr/webservice/api/', [
+                                'multipart' => [
+                                        [
+                                                'name'     => 'file',
+                                                'contents' => fopen($$file_path, 'r'),
+                                                'filename' => 'resume-' . $staffCode . '.pdf'
+                                        ],
+                                        [
+                                                'name'     => 'other_param',
+                                                'contents' => 'some_value'
+                                        ]
+                                ],
+                                'headers' => [
+                                        'Authorization' => 'Bearer YOUR_ACCESS_TOKEN'
+                                ]
+                        ]);
+
+                        $result = json_decode($response->getBody(), true);
+
+                        return response()->json(['success' => true, 'response' => $result]);
+                } catch (\Exception $e) {
+                        return response()->json(['error' => $e->getMessage()], 500);
+                }
+        } //end function
+        //20250329
+
+
+
+} //End of class
