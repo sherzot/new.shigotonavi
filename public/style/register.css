@@ -1,0 +1,204 @@
+body .container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    }
+    #logo{
+        
+    }
+    body .container header .hamburger {
+    background: none;
+    line-height: 45px;
+    color: #999;
+    border: 0;
+    font-size: 44px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    z-index: 10000000000000;
+    text-align: right;
+    }
+    body .container header .hamburger p {
+        margin: 0;
+    }
+    body .container header .cross {
+        background: none;
+        box-sizing: border-box;
+        color: #999;
+        border: 0;
+        font-size: 48px;
+        line-height: 45px;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        z-index: 10000000000000;
+        text-align: end;
+    }
+    body .container .menu {
+        z-index: 1000000;
+        font-weight: bold;
+        font-size: 0.8em;
+        width: 30%;
+        background: #f1f1f1;
+        position: absolute;
+        right: 5px;
+        top: 88px;
+        text-align: center;
+        font-size: 12px;
+    }
+    @media (min-width: 768px) {
+        body .container .menu {
+        width: 30%;
+        }
+    }
+    body .container .menu ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        list-style-image: none;
+    }
+    body .container .menu ul a {
+        text-decoration: none;
+        margin: 0px;
+        color: #666;
+    }
+    body .container .menu ul a:hover {
+        color: #666;
+        text-decoration: none;
+    }
+    body .container .menu ul a li {
+        display: block;
+        padding: 15px 0 15px 0;
+        border-bottom: #dddddd 1px solid;
+    }
+    body .container .menu ul a li:hover {
+        display: block;
+        background: #dddddd;
+        padding: 15px 0 15px 0;
+        border-bottom: #b1b1b1 1px solid;
+    }
+    body .container .menu ul a li .fa-solid {
+        padding: 0 5px;
+        font-size: 12px;
+        color: #ea544a;
+    }
+    @media (min-width: 768px) {
+        body .container .menu ul a li .fa-solid {
+        padding: 0 10px;
+        font-size: 16px;
+        }
+    }
+    @media (min-width: 768px) {
+        body .container .menu ul a li .fa-solid {
+        padding: 0 15px;
+        font-size: 16px;
+        }
+    }
+section {
+    height: 100%;
+    width: 100%;
+  }
+  section #content {
+    /* width: 800px; */
+    width: 100%;
+  }
+  section .card {
+    border-radius: 1rem;
+  }
+  section .card .top-text {
+    padding: 15px 0px;
+    text-align: start;
+    font-size: 12px;
+  }
+  section .card .card-body .row {
+    width: 100%;
+    display: flex;
+    margin: auto;
+  }
+  @media (min-width: 576px) {
+    section .card .card-body .row {
+      width: 95%;
+    }
+  }
+  section .card .card-body .row label {
+    font-size: 14px;
+    color: black;
+  }
+  .ptions{
+    color: rgb(75, 75, 75);
+  }
+  section .card .card-body #radioCheck1 {
+    padding-left: 25px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+  section .card .card-body #radioCheck {
+    padding: 8px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+  section .card .card-body #radioCheck .checkButton {
+    margin-left: 40px;
+  }
+  section .card .card-body #radioCheck .checkButton input {
+    margin: 5px 10px;
+  }
+  section .card .card-body .mb-4 #text-label {
+    float: left;
+  }
+  section .card .card-body h5 {
+    padding-bottom: 30px;
+  }
+  section .card .card-body .btn {
+    background-color: #ea544a;
+    color: #fff;
+    font-size: 12px;
+  }
+  @media (min-width: 576px) {
+    section .card .card-body .btn {
+      font-size: 12px;
+    }
+  }
+  @media (min-width: 768px) {
+    section .card .card-body .btn {
+      font-size: 14px;
+    }
+  }
+  @media (min-width: 992px) {
+    section .card .card-body .btn {
+      font-size: 16px;
+    }
+  }
+  section .card #error-message {
+    color: #508bfc;
+    display: none;
+  }
+  section #registerForm p {
+    font-size: 12px;
+  }
+  section #registerForm #submitButton {
+    background-color: #ea544a;
+    color: #fff;
+  }
+  section #registerForm #footer-bottom {
+    width: 250px;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+  }
+  section #registerForm #footer-bottom .btn1 {
+    background-color: #3498db;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+  }
+  section #registerForm #footer-bottom .btn2 {
+    background-color: #ea544a;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+  }

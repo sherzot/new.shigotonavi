@@ -1,0 +1,227 @@
+/* public/css/mypage.css */
+@import '../responsive';
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: color('background');
+    margin: 0;
+    padding: 0;
+
+    .container {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+
+
+            .hamburger {
+                background: none;
+                line-height: 45px;
+                // padding: 5px 10px 0px 10px;
+                color: #999;
+                border: 0;
+                font-size: 44px;
+                font-weight: bold;
+                cursor: pointer;
+                outline: none;
+                z-index: 10000000000000;
+                text-align: right;
+                p{
+                    margin: 0;
+                }
+            }
+            .cross {
+                background: none;
+                // padding: 5px 10px 0px 10px;
+                box-sizing: border-box;
+                color: #999;
+                border: 0;
+                font-size: 48px;
+                line-height: 45px;
+                font-weight: bold;
+                cursor: pointer;
+                outline: none;
+                z-index: 10000000000000;
+                text-align: end;
+            }
+        }
+        .menu {
+            z-index: 1000000;
+            font-weight: bold;
+            font-size: 0.8em;
+            width: 35%;
+            background: #f1f1f1;
+            position: absolute;
+            right: 5px;
+            text-align: center;
+            font-size: 12px;
+            @include respond-to("md") {
+                width: 30%;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                list-style-image: none;
+                    a {
+                        text-decoration: none;
+                        margin: 0px;
+                        color: #666;
+                        &:hover {
+                            color: #666;
+                            text-decoration: none;
+                        }
+                        li {
+                            display: block;
+                            padding: 15px 0 15px 0;
+                            border-bottom: #dddddd 1px solid;
+                            &:hover {
+                                display: block;
+                                background: #dddddd;
+                                padding: 15px 0 15px 0;
+                                border-bottom: #b1b1b1 1px solid;
+                            }
+                            .fa-solid{
+                                padding: 0 5px;
+                                font-size: 12px;
+                                color: color('btn');
+                                @include respond-to("md") {
+                                    padding: 0 10px;
+                                    font-size: 16px;
+                                }
+                                @include respond-to("md") {
+                                    padding: 0 15px;
+                                    font-size: 16px;
+                                }
+                            }
+                    }
+                }
+            }
+        }
+
+        .content {
+            text-align: center;
+
+            .content-p {
+                color: color('important-color');
+            }
+            .important{
+                h5{
+                    font-weight: bold;
+                }
+                p{
+                    color: color('important-color');
+                }
+            }
+
+            .matching-button {
+                display: inline-block;
+                margin: 15px 0;
+                padding: 10px 20px;
+                background-color: #d9534f;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+
+            .content-section {
+                .line {
+                    width: 100%;
+                    padding: 20px 0;
+
+                    box-sizing: border-box;
+
+                    .text-start {
+                        margin-bottom: 0px;
+                    }
+
+                    .line-best {
+                        margin: 0px;
+                        color: #d9534f;
+                    }
+                }
+
+                .cards {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: center;
+
+                    // モバイル画面にすべての要素を全幅で表示する
+                    .card {
+                        box-sizing: border-box;
+                        margin: 0px 20px;
+                        padding: 10px;
+                        flex: 1 1 100%;
+                        font-size: 14px;
+
+                        @include respond-to("xs") {
+                            margin: 0px 54px;
+
+                        }
+
+                        //576px画面の 2 つの優先ビュー
+                        @include respond-to("sm") {
+                            margin: 0px;
+                            flex: 1 1 30%;
+                        }
+                        // 768px画面の 2 つの優先ビュー
+                        @include respond-to("md") {
+                            margin: 0px;
+                            flex: 1 1 30%;
+                        }
+
+                        // 992px画面の 2 つの優先ビュー
+                        @include respond-to("lg") {
+                            margin: 0px;
+                            flex: 1 1 30%;
+                            padding: 10px;
+                        }
+                        a{
+                            text-align: center;
+                            text-decoration: none;
+
+                            @include respond-to("sm") {
+                                text-align: start;
+                            }
+                            @include respond-to("md") {
+                                text-align: start;
+                            }
+                            @include respond-to("lg") {
+                                text-align: start;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .row{
+            background-color: #cfcfcf98;
+            .btn{
+                width: 50%;
+                display: inline-block;
+                margin: auto;
+                padding: 10px 20px;
+                background-color: #d9534f;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            h5{
+                padding: 16px;
+            }
+        }
+    }
+}

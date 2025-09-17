@@ -1,0 +1,44 @@
+// responsive.scss
+
+// 色の変数
+$important-color: #ea544a;
+$btn: #ea544a;
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #508bfc;
+$text-color: #333;
+$error-color: #e74c3c;
+
+// 画面解像度の変数
+$breakpoints: (
+  "xs": 350px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px
+);
+
+// Mixin: 数値サイズに基づいたブレークポイントのメディア クエリ
+@mixin respond-to($size) {
+  $width: map-get($breakpoints, $size);
+  @if $width {
+    @media (min-width: $width) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoints地図では `#{$size}` 見つかりませんでした。";
+  }
+}
+
+// 色を呼び出す機能
+@function color($name) {
+  @return map-get((
+    "important-color": $important-color,
+    "btn": $btn,
+    "primary": $primary-color,
+    "secondary": $secondary-color,
+    "background": $background-color,
+    "text": $text-color,
+    "error": $error-color
+  ), $name);
+}

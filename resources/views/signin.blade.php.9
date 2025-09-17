@@ -1,0 +1,209 @@
+@extends('layouts.top')
+
+@section('title', '会員登録')
+@section('content')
+    <section class="d-flex align-items-center justify-content-center py-0 my-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12">
+                    <div class="card-body">
+                        <form id="registerForm" action="{{ route('register') }}" method="POST">
+                            @csrf
+                            <h3 class="text-center mb-4 mt-0 pt-3">マイページ取得</h3>
+
+                            {{--  <p class="mb-4">
+                                <span class="text-main-theme">「しごとナビ」</span>で、転職活動に必要な履歴書や職務経歴書を学歴や職歴、志望動機などの項目に沿って入力するだけで、自動的に文書が作成され、豊富なテンプレートから印刷用のPDFやExcel形式で出力可能です。豊富なテンプレートからPDFやExcel形式で印刷でき、
+                                証明写真の登録や「コンビニプリント」にも対応しています。マイページには履歴書作成のポイントも掲載されており、採用担当者に好印象を与える履歴書作りをサポートします。
+                            </p>  --}}
+                            {{--  <h5 class="text-main-theme">『保有権利』</h5>  --}}
+                            <h5 class="text-main-theme">マイページでできること：</h5>
+                            <ul>
+                                <li>学歴・職歴・自己PRなどを入力し、証明写真を登録してから、履歴書または職務経歴書を作成</li>
+                                <li><span class="text-main-theme">しごとを探し</span>(自分の希望だけでオファー ）</li>
+                                <li>応募記録(応募先、結果を日付順に記録）</li>
+                                {{--  <li>コンプリ(３大コンビニどこからでもプリント可）</li>  --}}
+                            </ul>
+                            <br>
+                            <h5 class="text-center mb-4 mt-0 pt-0 text-main-theme">基本情報登録</h5>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <div class="mb-2">
+                                <label for="name" class="form-label">お名前（漢字）
+                                    <span class="text-main-theme">必須</span>
+                                </label>
+                                <input type="text" name="name" id="name" class="form-control border-primary py-1"
+                                    required>
+                                @error('name')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <!-- メールアドレス -->
+                            <div class="mb-2">
+                                <label for="email" class="form-label">メールアドレス
+                                    <span class="text-main-theme">必須</span>
+                                </label>
+                                <input type="email" name="mail_address" id="email"
+                                    class="form-control border-primary py-1" value="{{ old('mail_address') }}" required>
+                                @error('email')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- パスワード -->
+                            <div class="mb-2 position-relative">
+                                <label class="form-label float-start" for="password">
+                                    パスワード <span class="text-main-theme">必須</span>
+                                </label>
+                                <input type="password" name="password" id="password"
+                                    class="form-control border-primary py-1" />
+                                <button type="button" class="btn toggle-password" data-target="password"
+                                    style="position: absolute; right: 6px; top: 70%; transform: translateY(-50%);">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                @error('password')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{--  <!-- パスワード確認 -->
+                            <div class="mb-2 position-relative">
+                                <label class="form-label float-start" for="password_confirmation">
+                                    パスワードを認証する <span class="text-main-theme">必須</span>
+                                </label>
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control border-primary py-1" />
+                                <button type="button" class="btn toggle-password" data-target="password_confirmation"
+                                    style="position: absolute; right: 6px; top: 70%; transform: translateY(-50%);">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                @error('password_confirmation')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>  --}}
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    document.querySelectorAll(".toggle-password").forEach(button => {
+                                        button.addEventListener("click", function() {
+                                            const targetId = this.getAttribute("data-target");
+                                            const inputField = document.getElementById(targetId);
+                                            const icon = this.querySelector("i");
+
+                                            inputField.type = inputField.type === "password" ? "text" : "password";
+                                            icon.classList.toggle("fa-eye");
+                                            icon.classList.toggle("fa-eye-slash");
+                                        });
+                                    });
+                                });
+                            </script>
+                            {{--  <!-- 生年月日 -->  --}}
+                            <div class="mb-2">
+                                <label class="form-label">生年月日 <small class="text-main-theme">必須
+                                        (例：19710401)</small></label>
+                                <input type="text" name="birthday" class="form-control border-primary py-1"
+                                    maxlength="8" pattern="\d{8}" required>
+                                @error('birthday')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">郵便番号 <span class="text-main-theme">必須</span></label>
+                                <div class="d-flex">
+                                    <input type="text" name="post_u" id="post_u"
+                                        class="form-control border-primary py-1" value="{{ old('post_u') }}" maxlength="3"
+                                        required style="width: 20%;">
+                                    <span class="mx-2">-</span>
+                                    <input type="text" name="post_l" id="post_l"
+                                        class="form-control border-primary py-1" value="{{ old('post_l') }}" maxlength="4"
+                                        required style="width: 25%;">
+                                    <button type="button" class="btn btn-primary ms-2" id="searchZipcode">検索</button>
+                                </div>
+                                @error('post_u')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                                @error('post_l')
+                                    <div class="alert text-main-theme">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="full_address" class="form-label">住所</label>
+                                <input type="text" id="full_address" name="full_address"
+                                    class="form-control border-primary py-1" value="{{ old('full_address') }}" readonly>
+                            </div>
+                            {{--  <!-- <div id="jobSearchError" class="text-main-theme fw-bold mt-2" style="display: none; font-size: 18px;">
+                                        しごと探しですか？のオプションを選んでください!　<a href="#option"><i class="fa-solid fa-arrow-down fs-f24 btn btn-outline-primary"></i></a>
+                                    </div> -->  --}}
+                            {{--  <p class="">これであなたは100万人サイト <span class="text-main-theme">[しごとナビ]</span> にマイページを取得します。  --}}
+                            </p>
+                            
+                            <div class="form-check py-3">
+                                <input class="form-check-input border-dark" type="checkbox" value=""
+                                    id="flexCheckChecked">
+                                <label class="form-check-label fs-f12" for="flexCheckChecked">
+                                    <a
+                                        href="https://www.shigotonavi.co.jp/privacy/privacymark.asp">しごとナビ利用規約・個人情報保護に関する事項</a>に同意する
+                                </label>
+                            </div>
+                            <div class="d-grid">
+                                <button id="registerButton" class="btn btn-main-theme btn-lg">登録</button>
+                            </div>
+
+
+                            <hr>
+                            <div class="my-3 text-center">
+                                <a href="/login" data-mdb-button-init="" data-mdb-ripple-init=""
+                                    class="text-center btn-lg btn-block text-decoration-none fs-f14 mb-2 ">
+                                    ログインパスワードをお持ちの方
+                                </a>
+                            </div>
+                            <hr>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("searchZipcode").addEventListener("click", function() {
+                let post_u = document.getElementById("post_u").value;
+                let post_l = document.getElementById("post_l").value;
+
+                if (post_u.length === 3 && post_l.length === 4) {
+                    fetch("{{ route('get.address.zipcloud') }}", {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value,
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                post_u: post_u,
+                                post_l: post_l
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.full_address) {
+                                document.getElementById("full_address").value = data.full_address;
+                            } else {
+                                alert("住所が見つかりませんでした。");
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
+                } else {
+                    alert("郵便番号を正しく入力してください (例: 166-0012)");
+                }
+            });
+        });
+    </script>
+    {{--  <script src="{{ asset('js/signin.js') }}"></script>  --}}
+@endsection

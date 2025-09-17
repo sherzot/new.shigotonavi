@@ -1,0 +1,105 @@
+@import '../responsive';
+section
+{
+    background-color: color('background');
+    height: 100%;
+    #content{
+        width: 700px;
+    }
+    .card{
+        border-radius: 1rem;
+        .top-text{
+            padding: 15px 0px;
+            text-align: start;
+            font-size: 12px;
+        }
+        .card-body{
+            .row{
+                width: 100%;
+                display: flex;
+                margin: auto;
+                @include respond-to("sm") {
+                    width: 95%;
+                }
+                label{
+                    font-size: 14px;
+                }
+            }
+            #radioCheck1{
+                padding-left: 25px;
+                margin: auto;
+                display: flex;
+                justify-content: flex-start;
+            }
+            #radioCheck{
+                padding: 8px;
+                margin: auto;
+                display: flex;
+                justify-content: flex-start;
+                .checkButton{
+                    margin-left: 40px;
+                    input{
+                        margin: 5px 10px;
+                    }
+
+                }
+            }
+            .mb-4{
+
+                #text-label{
+                    float: left;
+                }
+
+            }
+            h5{
+                padding-bottom: 30px;
+            }
+            .btn{
+                background-color: color('primary');
+                font-size: 12px;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+        #error-message{
+            color: color('background');
+            display: none;
+        }
+    }
+    #registerForm{
+        // text-align: start;
+
+        p{
+
+            font-size: 12px
+        }
+        #submitButton{
+
+            background-color: color('btn');
+            color: #fff;
+        }
+        #footer-bottom{
+            width: 250px;
+            display: flex;
+            margin: auto;
+            justify-content: space-between;
+            .btn1{
+                background-color: color('primary');
+                font-size: 12px;
+                color: #fff;
+                text-decoration: none;
+
+            }
+            .btn2{
+                background-color: color('btn');
+                font-size: 12px;
+                color: #fff;
+                text-decoration: none;
+            }
+
+        }
+
+
+
+    }
+}

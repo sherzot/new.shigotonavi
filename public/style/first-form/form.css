@@ -1,0 +1,104 @@
+section {
+  background-color: #508bfc;
+  height: 100%;
+}
+section #content {
+  width: 800px;
+}
+section .card {
+  border-radius: 1rem;
+}
+section .card .top-text {
+  padding: 15px 0px;
+  text-align: start;
+  font-size: 12px;
+}
+section .card .card-body .row {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+@media (min-width: 576px) {
+  section .card .card-body .row {
+    width: 95%;
+  }
+}
+section .card .card-body .row label {
+  font-size: 14px;
+  color: black;
+}
+.ptions{
+  color: rgb(75, 75, 75);
+}
+section .card .card-body #radioCheck1 {
+  padding-left: 25px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+section .card .card-body #radioCheck {
+  padding: 8px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+section .card .card-body #radioCheck .checkButton {
+  margin-left: 40px;
+}
+section .card .card-body #radioCheck .checkButton input {
+  margin: 5px 10px;
+}
+section .card .card-body .mb-4 #text-label {
+  float: left;
+}
+section .card .card-body h5 {
+  padding-bottom: 30px;
+}
+/* section .card .card-body .btn {
+  background-color: #ea544a;
+  color: #fff;
+  font-size: 12px;
+} */
+@media (min-width: 576px) {
+  section .card .card-body .btn {
+    font-size: 12px;
+  }
+}
+@media (min-width: 768px) {
+  section .card .card-body .btn {
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) {
+  section .card .card-body .btn {
+    font-size: 16px;
+  }
+}
+section .card #error-message {
+  color: #508bfc;
+  display: none;
+}
+section #registerForm p {
+  font-size: 12px;
+}
+section #registerForm #submitButton {
+  background-color: #ea544a;
+  color: #fff;
+}
+section #registerForm #footer-bottom {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+section #registerForm #footer-bottom .btn1 {
+  background-color: #3498db;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+}
+section #registerForm #footer-bottom .btn2 {
+  background-color: #ea544a;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+}

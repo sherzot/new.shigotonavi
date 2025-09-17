@@ -1,0 +1,11 @@
+<?php
+$mysqli = new mysqli("snvdb-test.cluster-cignrdaaiwoe.ap-northeast-1.rds.amazonaws.com", "admin", "WlJhchskS1aFKyK81tD9", "shigotonavi");
+$staff_code = 'S0442565';//'S0010087';
+$result = $mysqli->query("SELECT picture FROM person_picture WHERE staff_code = '$staff_code'");
+$row = $result->fetch_assoc();
+$image_data = $row['picture'];
+
+// 画像をファイルに保存
+//file_put_contents('/home/ec2-user/image/output_image.jpg', $image_data);
+file_put_contents('/var/www/html/shigotonavi/storage/app/exports/output_image.jpg', $image_data);
+?>

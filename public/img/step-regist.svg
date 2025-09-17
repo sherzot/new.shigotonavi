@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140.99 72.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e6e6e6;
+      }
+
+      .cls-2 {
+        fill: #efefef;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: HiraKakuStd-W8-83pv-RKSJ-H, 'Hiragino Kaku Gothic Std';
+        font-size: 24px;
+      }
+
+      .cls-5 {
+        fill: #ccc;
+      }
+
+      .cls-6 {
+        fill: #ed1c24;
+        stroke: #ed1c24;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        fill: #42210b;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <rect class="cls-1" x=".5" width="1140.49" height="72.25"/>
+    <g>
+      <polygon class="cls-5" points="510.04 64.82 510.04 5.82 709.86 5.82 760.96 35.32 709.86 64.82 510.04 64.82"/>
+      <path class="cls-7" d="M709.73,6.32c35.78,20.66,46.82,27.03,50.24,29.01-3.38,1.94-13.48,7.77-44.02,25.4l-6.22,3.59h-199.18V6.32h199.18M709.99,5.32h-200.45v60h200.45c33.82-19.53,51.96-30,51.96-30,0,0-18.14-10.47-51.96-30h0Z"/>
+    </g>
+    <g>
+      <polygon class="cls-2" points="197.25 64.51 197.25 5.51 514.6 5.51 564.5 35.01 514.6 64.51 197.25 64.51"/>
+      <path class="cls-7" d="M514.46,6.01l25.14,14.86,23.92,14.14-23.92,14.14-25.14,14.86H197.75V6.01h316.71M514.73,5.01H196.75v60h317.98c16.92-10,33.83-20,50.75-30-16.92-10-33.83-20-50.75-30h0Z"/>
+    </g>
+    <rect class="cls-6" x=".5" y="5.01" width="200.45" height="60"/>
+    <polygon class="cls-6" points="202.1 5.32 202.1 65.32 254.06 35.32 202.1 5.32"/>
+    <text class="cls-3" transform="translate(56.26 45.37)"><tspan x="0" y="0">会員登録</tspan></text>
+    <text class="cls-4" transform="translate(276.92 43.11)"><tspan x="0" y="0">履歴書・職務経歴書</tspan></text>
+    <text class="cls-4" transform="translate(576.83 43.11)"><tspan x="0" y="0">求人検索</tspan></text>
+  </g>
+</svg>

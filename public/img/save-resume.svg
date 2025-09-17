@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140.49 72.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #603813;
+      }
+
+      .cls-2 {
+        fill: #e6e6e6;
+      }
+
+      .cls-3 {
+        fill: #efefef;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-4, .cls-5 {
+        font-family: HiraKakuStd-W8-83pv-RKSJ-H, 'Hiragino Kaku Gothic Std';
+        font-size: 24px;
+      }
+
+      .cls-6 {
+        fill: #ed1c24;
+      }
+
+      .cls-7 {
+        fill: #ffb2ae;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <rect class="cls-2" width="1140.49" height="72.25"/>
+    <g>
+      <polygon class="cls-3" points="509.54 64.82 509.54 5.82 709.36 5.82 760.45 35.32 709.36 64.82 509.54 64.82"/>
+      <path class="cls-1" d="M709.23,6.32c35.74,20.64,46.8,27.02,50.23,29-3.43,1.98-14.49,8.36-50.23,29h-199.18V6.32h199.18M709.49,5.32h-200.45v60h200.45c33.82-19.53,51.96-30,51.96-30,0,0-18.14-10.47-51.96-30h0Z"/>
+    </g>
+    <text/>
+    <g>
+      <polygon class="cls-6" points="196.75 64.51 196.75 5.51 514.1 5.51 564 35.01 514.1 64.51 196.75 64.51"/>
+      <path class="cls-1" d="M513.96,6.01l25.14,14.86,23.92,14.14-42.51,25.13-6.55,3.87H197.25V6.01h316.71M514.23,5.01H196.25v60h317.98c16.92-10,33.83-20,50.75-30-16.92-10-33.83-20-50.75-30h0Z"/>
+    </g>
+    <g>
+      <path class="cls-7" d="M.5,64.51V5.51h199.82l52.22,29.8c-4.03,2.25-23.58,13.18-52.22,29.2H.5Z"/>
+      <path class="cls-1" d="M200.19,6.01l39.76,22.69c6.53,3.72,9.86,5.63,11.6,6.6-5.76,3.22-27.06,15.13-51.35,28.71H1V6.01h199.19M200.45,5.01H0v60h200.45c32.33-18.08,53.1-29.69,53.1-29.69,0,0-17.28-9.86-53.1-30.31h0Z"/>
+    </g>
+    <text class="cls-4" transform="translate(55.76 45.37)"><tspan x="0" y="0">会員登録</tspan></text>
+    <text class="cls-4" transform="translate(276.42 43.11)"><tspan x="0" y="0">履歴書・職務経歴書</tspan></text>
+    <text class="cls-5" transform="translate(576.33 43.11)"><tspan x="0" y="0">求人検索</tspan></text>
+  </g>
+</svg>

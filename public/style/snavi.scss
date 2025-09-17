@@ -1,0 +1,184 @@
+@import "../bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+// scss-docs-start import-stack
+// Configuration
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+
+// Typography
+//
+// scss-docs-add-start font-sizes
+$font-sizes-snavi: (
+  f4: $font-size-base * .25, //4px
+  f6: $font-size-base * .375, //6px
+  f8: $font-size-base * .5, //8px
+  f10: $font-size-base * .625, //10px
+  f12: $font-size-base * .75, //12px
+  f14: $font-size-base * .875, //14px
+  f16: $font-size-base * 1, //1remが16pxの場合
+  base: $font-size-base * 1, //1rem
+  f18: $font-size-base * 1.125, //18px
+  f20: $font-size-base * 1.25, //20px
+  f22: $font-size-base * 1.375, //22px
+  f24: $font-size-base * 1.5, //24px
+  f26: $font-size-base * 1.625, //26px
+  f28: $font-size-base * 1.75, //28px
+  f30: $font-size-base * 1.875, //30px
+  f32: $font-size-base * 2, //32px
+) !default;
+$font-sizes: map-merge($font-sizes, $font-sizes-snavi);
+// scss-docs-add-end-start font-sizes
+
+
+// Spacing
+//
+// scss-docs-add-start spacer-variables-maps
+$spacers-snavi: (
+  //default 1: $spacer * .25, //4px
+  s4: $spacer * .25, //4px
+  s6: $spacer * .375, //6px
+  //default 2: $spacer * .5, //8px
+  s8: $spacer * .5, //8px
+  s10: $spacer * .625, //10px
+  s12: $spacer * .75, //12px
+  s14: $spacer * .875, //14px
+  //default 3: $spacer * 1, //1remが16pxの場合
+  s16: $spacer * 1, //1remが16pxの場合
+  s18: $spacer * 1.125, //18px
+  s20: $spacer * 1.25, //20px
+  s22: $spacer * 1.375, //22px
+  //default 4: $spacer * 1.5, //24px
+  s24: $spacer * 1.5, //24px
+  s26: $spacer * 1.625, //26px
+  s28: $spacer * 1.75, //28px
+  s30: $spacer * 1.875, //30px
+  s32: $spacer * 2, //32px
+  s34: $spacer * 2.125, //34px
+  s36: $spacer * 2.25, //36px
+  s38: $spacer * 2.375, //38px
+  s40: $spacer * 2.5, //40px
+  s42: $spacer * 2.625, //42px
+  s44: $spacer * 2.75, //44px
+  s46: $spacer * 2.825, //46px
+  //default 5: $spacer * 3, //48px
+  s48: $spacer * 3, //48px
+) !default;
+$spacers: map-merge($spacers, $spacers-snavi);
+// scss-docs-add-end spacer-variables-maps
+
+// Color system
+//
+// scss-docs-add-start color-variables
+$snavidarkorange:   #ff7300 !default;
+// scss-docs-add-end color-variables
+
+// scss-docs-add-start colors-map
+$colors-snavi: (
+  "snavidarkorange":    $snavidarkorange,
+) !default;
+$colors: map-merge($colors, $colors-snavi);
+// scss-docs-add-end colors-map
+
+// fusv-disable
+$snavidarkorange-100: tint-color($snavidarkorange, 80%) !default;
+$snavidarkorange-200: tint-color($snavidarkorange, 60%) !default;
+$snavidarkorange-300: tint-color($snavidarkorange, 40%) !default;
+$snavidarkorange-400: tint-color($snavidarkorange, 20%) !default;
+$snavidarkorange-500: $snavidarkorange !default;
+$snavidarkorange-600: shade-color($snavidarkorange, 20%) !default;
+$snavidarkorange-700: shade-color($snavidarkorange, 40%) !default;
+$snavidarkorange-800: shade-color($snavidarkorange, 60%) !default;
+$snavidarkorange-900: shade-color($snavidarkorange, 80%) !default;
+
+$snavidarkorange: (
+  "snavidarkorange-100": $snavidarkorange-100,
+  "snavidarkorange-200": $snavidarkorange-200,
+  "snavidarkorange-300": $snavidarkorange-300,
+  "snavidarkorange-400": $snavidarkorange-400,
+  "snavidarkorange-500": $snavidarkorange-500,
+  "snavidarkorange-600": $snavidarkorange-600,
+  "snavidarkorange-700": $snavidarkorange-700,
+  "snavidarkorange-800": $snavidarkorange-800,
+  "snavidarkorange-900": $snavidarkorange-900
+) !default;
+
+// scss-docs-add-start theme-color-variables
+$snavibt:       $blue-300 !default;
+$snavigray:     $gray-700 !default;
+$snaviorange:   $snavidarkorange-500 !default;
+// scss-docs-add-end theme-color-variables
+
+// scss-docs-add-start theme-colors-map
+$theme-colors-snavi: (
+  "snavibt":    $snavibt,
+  "snavigray":    $snavigray,
+  "snaviorange":    $snaviorange,
+) !default;
+$theme-colors: map-merge($theme-colors, $theme-colors-snavi);
+// scss-docs-add-end theme-colors-map
+
+// scss-docs-add-start theme-text-variables
+$snavibt-bg-text-emphasis:   shade-color($snavibt, 60%) !default;
+$snavigray-bg-text-emphasis:   shade-color($snavigray, 60%) !default;
+$snaviorange-bg-text-emphasis:   shade-color($snaviorange, 60%) !default;
+// scss-docs-add-end theme-text-variables
+
+// scss-docs-add-start theme-bg-subtle-variables
+$snavibt-bg-subtle:       tint-color($snavibt, 80%) !default;
+$snavigray-bg-subtle:       tint-color($snavigray, 80%) !default;
+$snaviorange-bg-subtle:       tint-color($snaviorange, 80%) !default;
+// scss-docs-add-end theme-bg-subtle-variables
+
+// scss-docs-add-start theme-border-subtle-variables
+$snavibt-bg-border-subtle:   tint-color($snavibt, 60%) !default;
+$snavigray-bg-border-subtle:   tint-color($snavigray, 60%) !default;
+$snaviorange-bg-border-subtle:   tint-color($snaviorange, 60%) !default;
+// scss-docs-add-end theme-border-subtle-variables
+
+@import "../bootstrap/scss/variables-dark";
+@import "../bootstrap/scss/maps";
+@import "../bootstrap/scss/mixins";
+@import "../bootstrap/scss/utilities";
+
+// Layout & components
+@import "../bootstrap/scss/root";
+@import "../bootstrap/scss/reboot";
+@import "../bootstrap/scss/type";
+@import "../bootstrap/scss/images";
+@import "../bootstrap/scss/containers";
+@import "../bootstrap/scss/grid";
+@import "../bootstrap/scss/tables";
+@import "../bootstrap/scss/forms";
+@import "../bootstrap/scss/buttons";
+
+
+@import "../bootstrap/scss/transitions";
+@import "../bootstrap/scss/dropdown";
+@import "../bootstrap/scss/button-group";
+@import "../bootstrap/scss/nav";
+@import "../bootstrap/scss/navbar";
+@import "../bootstrap/scss/card";
+@import "../bootstrap/scss/accordion";
+@import "../bootstrap/scss/breadcrumb";
+@import "../bootstrap/scss/pagination";
+@import "../bootstrap/scss/badge";
+@import "../bootstrap/scss/alert";
+@import "../bootstrap/scss/progress";
+@import "../bootstrap/scss/list-group";
+@import "../bootstrap/scss/close";
+@import "../bootstrap/scss/toasts";
+@import "../bootstrap/scss/modal";
+@import "../bootstrap/scss/tooltip";
+@import "../bootstrap/scss/popover";
+@import "../bootstrap/scss/carousel";
+@import "../bootstrap/scss/spinners";
+@import "../bootstrap/scss/offcanvas";
+@import "../bootstrap/scss/placeholders";
+
+// Helpers
+@import "../bootstrap/scss/helpers";
+
+// Utilities
+@import "../bootstrap/scss/utilities/api";
+// scss-docs-end import-stack

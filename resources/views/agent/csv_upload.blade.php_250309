@@ -1,0 +1,20 @@
+
+[200~<form id="csvupload-form" enctype="multipart/form-data">
+{{--  <form method="post" action="{{ route('/uploadcsv') }}" enctype="multipart/form-data"> --}
+    @csrf
+    <label name="csvFile">csvファイル</label>
+    <input type="file" name="csvFile" class="" id="csvFile"/>
+    <input type="submit"></input>
+</form>
+{{-- <input type="submit"> --}}
+<button type="button" id="uploadcsv-uplad" class="btn btn-main-theme w-100 shadow-sm rounded-2"
+                            style="display: none;">アップロード</button>
+
+  {{Form::open(['route'=>'csv.upload','enctype'=>'multipart/form-data'])}}  
+  @csrf
+  {{Form::label('csvFile', 'csvファイル')}}
+  {{Form::file('csvFile')}}
+  {{Form::submit()}}
+{{Form::close()}}
+{{Form::open(['route'=>'/uploadcs','enctype'=>'multipart/form-data' ])}}
+{{--  {{Form::open(['route'=>'csv.download','enctype'=>'multipart/form-data' ])}} --}}
