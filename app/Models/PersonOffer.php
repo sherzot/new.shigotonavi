@@ -19,7 +19,7 @@ class PersonOffer extends Model
      
     protected $fillable = [
         'staff_code',
-        'order_code',^
+        'order_code',
         'company_code',
         'agent_code',
         'created_at',
